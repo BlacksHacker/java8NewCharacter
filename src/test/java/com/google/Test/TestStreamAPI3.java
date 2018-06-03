@@ -66,6 +66,28 @@ public class TestStreamAPI3 {
         Optional<Double> op2 = emps.stream()
                 .map(Employee::getSalary)
                 .min(Double::compare);
-        System.out.println(op2.get());
+         System.out.println(op2.get());
     }
+
+
+    /*
+        归约
+        reduce(T identity, BinaryOperator) / reduce(BinaryOperator) -- 可以将流中元素反复结合起来，得到一个值。
+     */
+    @Test
+    public void test3(){
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        Integer sum = list.stream()
+                .reduce(0, (x, y) -> x + y);
+        System.out.println(sum);
+
+        System.out.println("------------------");
+        Optional<Double> op = emps.stream()
+                .map(Employee::getSalary)
+                .reduce(Double::sum);
+        System.out.println(op.get());
+    }
+
+
+
 }
